@@ -1,8 +1,11 @@
 package app.controller;
 
 import app.service.CaptchaService;
+import app.service.GeneratorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +30,9 @@ public class CaptchaController {
     }
 
     @GetMapping(path = "/captcha/{id}")
-    public byte[] getCaptcha(@PathVariable("id") String captchaId) {
-        return captchaService.getCaptcha(captchaId).getImage();
+    public ResponseEntity<byte[]> getCaptcha(@PathVariable("id") String captchaId) {
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(captchaService.getCaptcha(captchaId).getImage());
     }
 }
