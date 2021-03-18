@@ -1,7 +1,7 @@
 package app.controller;
 
+import app.bean.GenCaptchaResult;
 import app.service.CaptchaService;
-import app.service.GeneratorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,9 +24,9 @@ public class CaptchaController {
     @Autowired
     CaptchaService captchaService;
 
-    @PostMapping(path = "/captcha")
-    public String genCaptcha() {
-        return captchaService.genCaptcha().getId();
+    @PostMapping(path = "/captcha/{type}")
+    public GenCaptchaResult genCaptcha(@PathVariable("type") int type) {
+        return new GenCaptchaResult(captchaService.genCaptcha(type, 6).getId());
     }
 
     @GetMapping(path = "/captcha/{id}")

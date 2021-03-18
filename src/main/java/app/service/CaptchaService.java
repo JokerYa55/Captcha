@@ -1,6 +1,6 @@
 package app.service;
 
-import app.bean.CaptchaItem;
+import app.model.CaptchaItem;
 import app.exception.DataNotFoundException;
 import app.util.generator.captcha.CaptchaGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +21,10 @@ public class CaptchaService {
     @Autowired
     GeneratorService genService;
 
-    public CaptchaItem genCaptcha() {
+    public CaptchaItem genCaptcha(int captchaType, int captchaLength) {
         CaptchaItem result = new CaptchaItem();
-        CaptchaGenerator generator = new CaptchaGenerator(3);
-        result.setCode(genService.genCode(8));
+        CaptchaGenerator generator = new CaptchaGenerator(captchaType);
+        result.setCode(genService.genCode(captchaLength));
         result.setImage(generator.createCaptcha(result.getCode()));
         Cache cache = cacheManager.getCache("captcha");
         cache.put(result.getId(), result);
