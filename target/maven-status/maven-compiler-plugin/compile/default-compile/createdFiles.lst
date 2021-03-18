@@ -1,0 +1,15 @@
+app\configuration\cache\CacheConfiguration$1.class
+app\App.class
+app\aspect\log\LogRepositoryAspect.class
+app\util\generator\captcha\DarkCustomCage.class
+app\controller\ControllerExceptionHandler.class
+app\exception\ExceptionData.class
+app\aspect\log\LogControllerAspect.class
+app\service\GeneratorService.class
+app\bean\CaptchaItem.class
+app\controller\CaptchaController.class
+app\service\CaptchaService.class
+app\configuration\cache\CacheConfiguration.class
+app\util\generator\captcha\CustomCage.class
+app\exception\DataNotFoundException.class
+app\util\generator\captcha\CaptchaGenerator.class
